@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{main}">
+<head>
+  <title layout:fragment="title">Done Requests</title>
+</head>
+<body>
+<section layout:fragment="content">
+  <h1 class="h3 mb-3">Done Requests</h1>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3" th:if="${requests} != null">
+    <div class="col" th:each="req : ${requests}">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start">
+            <h5 class="card-title mb-1">
+              <span th:text="${req.userName}"></span>
+              <small class="text-muted">#<span th:text="${req.id}"></span></small>
+            </h5>
+            <div>
+              <span class="text-danger fw-bold" th:if="${!req.status}">*New</span>
+              <span class="text-success fw-bold" th:if="${req.status}">New</span>
+            </div>
+          </div>
+          <h6 class="card-subtitle mb-2 text-muted" th:text="${req.courseName}"></h6>
+          <p class="mb-2">
+            <a th:href="${'tel:' + req.phone}" th:text="${'+7' + req.phone}"></a>
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-0 d-flex justify-content-end gap-2">
+          <a class="btn btn-sm btn-outline-primary" th:href="@{/request(id=${req.id})}">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
+
