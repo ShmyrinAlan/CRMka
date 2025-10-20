@@ -16,14 +16,13 @@
           <div class="d-flex justify-content-between align-items-start">
             <h5 class="card-title mb-1">
               <span th:text="${req.userName}"></span>
-              <small class="text-muted">#<span th:text="${req.id}"></span></small>
             </h5>
             <div>
               <span class="text-danger fw-bold" th:if="${!req.status}">*<span th:if="${req.date.isAfter(date.minusDays(1L))}">New</span></span>
               <span class="text-success fw-bold" th:if="${req.status}"><span th:if="${req.date.isAfter(date.minusDays(1L))}">New</span></span>
             </div>
           </div>
-          <h6 class="card-subtitle mb-2 text-muted" th:text="${req.courseName}"></h6>
+          <h6 class="card-subtitle mb-2 text-muted" th:text="${req.course != null ? req.course.name : ''}"></h6>
           <p class="mb-2">
             <a th:href="${'tel:' + req.phone}" th:text="${'+7'+ req.phone}"></a>
           </p>

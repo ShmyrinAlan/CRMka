@@ -7,9 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,9 +20,6 @@ public class Requests {
 
     @Column(length = 100)
     private String userName;
-
-    @Column(length = 100)
-    private String courseName;
 
     @Column(length = 200)
     private String description;
@@ -35,4 +32,15 @@ public class Requests {
 
     @Column
     boolean status;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id")
+    private Courses courses;
+
+    @ManyToMany
+    @JoinTable(
+        name = "requests_operators",
+        joinColumns = @JoinColumn(name = "request_id")
+    )
+    private List<Operators> operators;
 }
