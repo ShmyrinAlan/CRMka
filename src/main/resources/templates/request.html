@@ -76,7 +76,7 @@
   <div class="card" th:if="${!request.status}">
     <div class="card-header">Edit Request</div>
     <div class="card-body">
-      <form th:action="@{/request/add}" method="post" class="row g-3">
+      <form th:action="@{/request/up}" method="post" class="row g-3">
         <input type="hidden" name="id" th:value="${request.id}">
         <input type="hidden" name="date" th:value="${request.date == null ? #dates.format(#dates.createNow(), 'yyyy-MM-dd') : request.date}">
         <input type="hidden" name="course.id" th:value="${request.course != null ? request.course.id : null}">

@@ -72,6 +72,14 @@ public class RequestsController {
             requestsDTO.setDate(LocalDate.now());
         }
         repo.save(RequestMapper.toRequests(requestsDTO, repoOp));
+        return "redirect:/all";
+    }
+    @PostMapping("/request/up")
+    public String upRequest(@ModelAttribute RequestsDTO requestsDTO){
+        if (requestsDTO.getDate() == null) {
+            requestsDTO.setDate(LocalDate.now());
+        }
+        repo.save(RequestMapper.toRequests(requestsDTO, repoOp));
         return "redirect:/request?id=" + requestsDTO.getId();
     }
 
